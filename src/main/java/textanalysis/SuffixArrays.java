@@ -1,8 +1,6 @@
 package textanalysis;
 
 public final class SuffixArrays {
-    private static final int ALPHABET = 65536;
-
     private SuffixArrays() {
     }
 
@@ -11,7 +9,11 @@ public final class SuffixArrays {
         if (n == 0) {
             return new int[0];
         }
-        int m = Math.max(ALPHABET, n);
+        int maxChar = 0;
+        for (int i = 0; i < n; i++) {
+            maxChar = Math.max(maxChar, s.charAt(i));
+        }
+        int m = Math.max(maxChar + 1, n);
         int[] sa = new int[n];
         int[] order = new int[n];
         int[] rank = new int[n];
