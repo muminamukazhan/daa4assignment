@@ -33,8 +33,12 @@ public final class Benchmark {
         return sb.toString();
     }
 
+    static final int WARMUP = 20;
+
     private static double timeMs(Task task) {
-        sink += task.run();
+        for (int w = 0; w < WARMUP; w++) {
+            sink += task.run();
+        }
         long total = 0;
         for (int r = 0; r < RUNS; r++) {
             long start = System.nanoTime();
